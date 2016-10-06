@@ -28,6 +28,7 @@ gem 'pg'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise-bootstrap-views'
+gem 'stock_quote'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

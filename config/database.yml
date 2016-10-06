@@ -33,7 +33,4 @@ test:
   database: db/test
 
 production:
-  <<: *default
-  database: db/production
-  username: trackastock
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

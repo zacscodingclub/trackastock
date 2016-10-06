@@ -18,6 +18,9 @@
           <strong>Symbol: </strong> <%= @stock.ticker %>
           <strong>Company: </strong> <%= @stock.name %>
           <strong>Last Price: </strong> <%= @stock.last_price %>
+          <%= link_to "Add to Portfolio", user_stocks_path(user: current_user, stock_ticker: @stock.ticker,
+                                          stock_id: @stock.id ? @stock.id : ''), class:'btn btn-xs btn-success',
+                                          method: :post %>
         </div>
       <% end %>
 

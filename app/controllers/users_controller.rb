@@ -3,4 +3,8 @@ class UsersController < ApplicationController
     @user = current_user
     @user_stocks = @user.stocks
   end
+
+  def friends
+    @user = current_user
+  end
 end

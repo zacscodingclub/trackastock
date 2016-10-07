@@ -1,1 +1,34 @@
-<h1>My Friends</h1>
+<% if @user.friends.count > 0 %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th colspan="3" class="page-header">
+          <h2>My Friends</h2>
+        </th>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.friends.each do |friend| %>
+        <tr>
+          <td><%= friend.full_name %></td>
+          <td><%= friend.email %></td>
+          <td>
+            <%= link_to "View Profile", user_path(friend), class:'btn btn-primary btn-xs' %>
+            <%= link_to "Remove Friend", friendship_path(friend), class:'btn btn-danger btn-xs',
+                                :method => :delete, :data => { :confirm => 'Are you sure?'}%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <h3>
+    Add some friends!
+  </h3>
+<% end %>

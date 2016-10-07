@@ -21,4 +21,12 @@ class User < ApplicationRecord
     return false unless stock
     user_stocks.where(stock_id: stock.id).exists?
   end
+
+  def full_name
+    if first_name || last_name
+      "#{first_name} + #{last_name}"
+    else
+      "Anonymous"
+    end
+  end
 end

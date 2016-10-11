@@ -24,6 +24,38 @@ class User < ApplicationRecord
     user_stocks.where(stock_id: stock.id).exists?
   end
 
+  def not_friends_with?(friend_id)
+    friendships.where(friend_id: friend_id).count < 1
+  end
+
+  def except_current_user(users)
+    users.reject { |user| user.id == self.id }
+  end
+
+  def self.search(search_params)
+    return User.none if search_params.blank?
+
+    search_params.strip!
+    search_params.downcase!
+    (first_name_matches(search_params) + last_name_matches(search_params) + email_matches(search_params)).uniq
+  end
+
+  def self.first_name_matches(param)
+    matches('first_name', param)
+  end
+
+  def self.last_name_matches(param)
+    matches('last_name', param)
+  end
+
+  def self.email_matches(param)
+    matches('email', param)
+  end
+
+  def self.matches(field, param)
+    where("lower(#{field}) like ?", "%#{param}%")
+  end
+
   def full_name
     if first_name || last_name
       "#{first_name} #{last_name}"

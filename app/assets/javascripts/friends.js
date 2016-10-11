@@ -7,7 +7,8 @@ init_friend_lookup = function() {
 
     $('#friend-lookup-form').on('ajax:success', function(event, data, status) {
         hideSpinner();
-        $('#friend-lookup').replaceWith(data);
+        console.log(data);
+        $('#friends-lookup').replaceWith(data);
 
         init_friend_lookup();
     });

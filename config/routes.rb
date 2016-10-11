@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   resources :user_stocks, except: [:show, :edit, :update]
 
   resources :friendships
-  resources :users
-  devise_for :users, :controllers => { :registrations => 'user/registrations' }
 
+  devise_for :users, :controllers => { :registrations => 'user/registrations' }
+  resources :users
+  
   get 'search-friends', to:'users#search'
   post 'add-friend', to:'users#add_friend'
   get 'profile/:id', to: 'users#show'
